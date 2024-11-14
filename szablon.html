@@ -7,28 +7,37 @@
     <title>Szablon Artykułu</title>
   </head>
   <body>
-    <header class="header" id="header">
-      <div class="header-content">
-        <h1 class="title">Wydawnictwo AI</h1>
-        <nav>
-          <ul>
-            <li><a href="#header">Strona Główna</a></li>
-            <li><a href="#artykuly">Artykuły</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+    <header class="header-site" id="header-site">
+      <div class="header-site__content">
+        <h1 class="header-site__title">Wydawnictwo AI</h1>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#header-site" class="nav__link">Strona Główna</a>
+            </li>
+            <li class="nav__item">
+              <a href="#artykuly" class="nav__link">Artykuły</a>
+            </li>
+            <li class="nav__item">
+              <a href="#kontakt" class="nav__link">Kontakt</a>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <div class="container" id="artykuly">
+    <div class="content-container" id="artykuly">
       <!-- CONTENT_PLACEHOLDER -->
     </div>
 
-    <footer class="footer" id="kontakt">
-      <p>2024, Miłego dnia :)</p>
-      <p>
-        <a href="mailto:maryna.karpova.dev@gmail.com"
-          >maryna.karpova.dev@gmail.com</a
+    <footer class="footer-site" id="kontakt">
+      <p class="footer-site__text">Miłego dnia :)</p>
+      <p class="footer-site__email">
+        <a
+          href="mailto:maryna.karpova.dev@gmail.com"
+          class="footer-site__email-link"
+        >
+          maryna.karpova.dev@gmail.com</a
         >
       </p>
     </footer>
