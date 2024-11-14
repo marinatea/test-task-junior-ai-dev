@@ -6,16 +6,49 @@
 
 body {
   font-family: "Georgia", serif;
-  background-color: #f4f4f4;
+  background-color: #f4f4f9;
   color: #333;
-  line-height: 1.8;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+}
+
+.header {
+  width: 100%;
+  background-color: #436b6b;
+  padding: 20px 0;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.header-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #e7c14f;
 }
 
 .container {
@@ -32,15 +65,17 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #2c3e50;
-  margin-bottom: 0.5em;
+  color: #022721;
+  margin-bottom: 20px;
 }
 
 h2,
-h3 {
+h3,
+h4,
+h5 {
   color: #555;
   margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
 }
 
 p {
@@ -52,9 +87,9 @@ p {
 img {
   display: block;
   margin: 20px auto;
-  max-width: auto;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 figcaption {
@@ -74,6 +109,9 @@ blockquote {
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   font-size: 0.9em;
   color: #aaa;
@@ -83,4 +121,23 @@ blockquote {
   background-color: #fff;
   padding-bottom: 20px;
   width: 100%;
+}
+
+footer a {
+  text-decoration: none;
+  color: #022721;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s, color 0.3s ease;
+}
+
+footer a:hover {
+  color: #555;
+  transform: scale(1.2);
+}
+
+footer p {
+  display: flex;
+  justify-content: center;
 }
