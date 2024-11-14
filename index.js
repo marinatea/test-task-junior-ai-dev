@@ -2,16 +2,32 @@ import fetchArticle from "./fetchArticle.js";
 import { OPENAI_API_KEY } from "./config.js";
 import fetch from "node-fetch";
 import fs from "fs";
+import path from "path";
 
-const articleUrl =
-  "https://cdn.oxido.pl/hr/Zadanie%20dla%20JJunior%20AI%20Developera%20-%20tresc%20artykulu.txt";
+async function createPreview() {
+  try {
+    const articleHtml = fs.readFileSync("artykul.html", "utf8");
+
+    const templateHtml = fs.readFileSync("szablon.html", "utf8");
+
+    const previewHtml = templateHtml.replace(
+      "<!-- CONTENT_PLACEHOLDER -->",
+      articleHtml
+    );
+
+    fs.writeFileSync("podglad.html", previewHtml, "utf8");
+    console.log("Plik podglad.html został pomyślnie wygenerowany.");
+  } catch (error) {
+    console.error("Błąd podczas tworzenia podglądu artykułu:", error);
+  }
+}
 
 async function generateHTMLWithOpenAI(articleContent) {
   const prompt = `Przygotuj kod HTML na podstawie poniższego artykułu.
-  Zastosuj odpowiednie tagi HTML do strukturyzacji treści, dodaj miejsca na obrazy z tagami <img> z atrybutem src="image_placeholder.jpg" oraz dodaj atrybut alt do każdego obrazka z dokładnym promptem, który możemy użyć do wygenerowania grafiki.
+  Zastosuj odpowiednie tagi HTML do strukturyzacji treści, dodaj miejsca na obrazy z tagami <img> z atrybutem src="image_placeholder.jpg" oraz dodaj atrybut alt do każdego obrazka z dokładnym promptem, który możemy użyć do wygenerowania grafiki na podstawie odpowiednich paragraów.
   Umieść podpisy pod grafikami używając odpowiedniego tagu HTML.
-  Nie dodawaj CSS ani JavaScript, tylko kod HTML do wstawienia pomiędzy tagami <body> i </body>.
-  Nie dołączaj znaczników <html>, <head> ani <body>.\n\nArtykuł: \n\n${articleContent}`;
+  Wszystkie nagłowki powinne byc też w odpowiednich tagach: <h1> albo <h2> albo <h3> albo <h4> albo <h5>.
+  Nie dodawaj CSS ani JavaScript, tylko kod HTML do wstawienia pomiędzy tagami <body> i </body>.\n\nArtykuł: \n\n${articleContent}`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -39,14 +55,11 @@ async function generateHTMLWithOpenAI(articleContent) {
       htmlContent = htmlContent.replace(/```html/g, "").replace(/```/g, "");
 
       if (htmlContent) {
-        const fullHTMLContent = `${htmlContent}`;
-
-        fs.writeFileSync("artykul.html", fullHTMLContent, "utf8");
+        fs.writeFileSync("artykul.html", htmlContent, "utf8");
+        console.log("Artykuł HTML został wygenerowany.");
       } else {
         throw new Error("Brak treści HTML w odpowiedzi OpenAI");
       }
-    } else {
-      throw new Error("Brak odpowiednich danych w odpowiedzi z OpenAI");
     }
   } catch (error) {
     console.error("Błąd podczas komunikacji z OpenAI:", error);
@@ -56,8 +69,13 @@ async function generateHTMLWithOpenAI(articleContent) {
 
 async function main() {
   try {
-    const articleContent = await fetchArticle(articleUrl);
+    const articleContent = await fetchArticle(
+      "https://cdn.oxido.pl/hr/Zadanie%20dla%20JJunior%20AI%20Developera%20-%20tresc%20artykulu.txt"
+    );
+
     await generateHTMLWithOpenAI(articleContent);
+
+    await createPreview();
   } catch (error) {
     console.error("Wystąpił błąd:", error);
   }
