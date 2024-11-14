@@ -16,7 +16,7 @@ body {
   margin: 0;
 }
 
-.header {
+.header-site {
   width: 100%;
   background-color: #436b6b;
   padding: 20px 0;
@@ -24,34 +24,34 @@ body {
   margin-bottom: 2em;
 }
 
-.header-content h1 {
+.header-site__content h1 {
   font-size: 2.5em;
   margin-bottom: 10px;
 }
 
-nav ul {
+.nav__list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
+.nav__item {
   display: inline;
   margin: 0 15px;
 }
 
-nav ul li a {
+.nav__link {
   text-decoration: none;
   color: #fff;
   font-size: 1.2em;
   transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.nav__link:hover {
   color: #e7c14f;
 }
 
-.container {
+.content-container {
   max-width: 800px;
   width: 100%;
   padding: 20px;
@@ -108,7 +108,7 @@ blockquote {
   background: #f4f4f9;
 }
 
-.footer {
+.footer-site {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,7 +123,7 @@ blockquote {
   width: 100%;
 }
 
-footer a {
+.footer-site__email-link {
   text-decoration: none;
   color: #022721;
   cursor: pointer;
@@ -132,12 +132,27 @@ footer a {
   transition: transform 0.3s, color 0.3s ease;
 }
 
-footer a:hover {
+.footer-site__email-link:hover {
   color: #555;
   transform: scale(1.2);
 }
 
-footer p {
+.footer-site__text {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .header-site__content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav__list {
+    flex-direction: column;
+  }
+
+  .nav__item {
+    margin-bottom: 10px;
+  }
 }
