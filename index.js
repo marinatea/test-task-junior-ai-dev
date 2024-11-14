@@ -2,7 +2,6 @@ import fetchArticle from "./fetchArticle.js";
 import { OPENAI_API_KEY } from "./config.js";
 import fetch from "node-fetch";
 import fs from "fs";
-import path from "path";
 
 async function createPreview() {
   try {
