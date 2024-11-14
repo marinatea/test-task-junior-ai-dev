@@ -1,4 +1,4 @@
-# Aplikacja do generowania artykulow HTML za pomocą AI.
+#Aplikacja do generowania artykulow HTML za pomocą AI.
 
 Jest to prosta aplikacja Node.js, która pobiera artykuł w formacie tekstowym, generuje jego wersję HTML przy użyciu OpenAI i tworzy stronę podglądu z podstawowym szablonem.
 Aplikacja automatycznie tworzy strony HTML, w tym miejsca na obrazy z tagami `img`, podpisami i nagłówkami w odpowiednich tagach HTML.
