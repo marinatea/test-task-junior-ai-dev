@@ -40,9 +40,8 @@ async function generateHTMLWithOpenAI(articleContent) {
 
       if (htmlContent) {
         const fullHTMLContent = `${htmlContent}`;
-        
+
         fs.writeFileSync("artykul.html", fullHTMLContent, "utf8");
-        console.log("Plik HTML został zapisany jako artykul.html");
       } else {
         throw new Error("Brak treści HTML w odpowiedzi OpenAI");
       }
